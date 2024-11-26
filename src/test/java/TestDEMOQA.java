@@ -49,9 +49,9 @@ public class TestDEMOQA {
             $("[id=currentAddress]").setValue("Some street 1");
 
             $("[id=state]").click();
-            $(byText("Rajasthan")).click();
+            $("#stateCity-wrapper").$(byText("Rajasthan")).click();
             $("[id=city]").click();
-            $(byText("Jaiselmer")).click();
+            $("#stateCity-wrapper").$(byText("Jaiselmer")).click();
 
             $("[id=submit]").click();
 
