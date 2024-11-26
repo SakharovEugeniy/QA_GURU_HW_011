@@ -19,7 +19,7 @@ public class TestDEMOQA {
 
 
     @Test
-    void testDemoqaFullForm() {
+    void demoqaFullFormTest() {
             open("https://demoqa.com/automation-practice-form");
 
             //complete the form
@@ -30,7 +30,7 @@ public class TestDEMOQA {
 
             $("[id=userEmail]").setValue("IIvanov@gmail.com");
 
-            $(byText("Male")).click();
+            $("[id=genterWrapper]").$(byText("Male")).click();
 
             $("[id=userNumber]").setValue("0123456789");
 
@@ -41,10 +41,10 @@ public class TestDEMOQA {
 
             $("[id=subjectsInput]").setValue("Computer Science").sendKeys(Keys.TAB);
             $("[id=subjectsInput]").setValue("Commerce").sendKeys(Keys.TAB);
-            $(byText("Sports")).click();
 
-            File fileToUpload = new File("src/test/resources/Screen Form.png");
-            $("[id=uploadPicture]").uploadFile(fileToUpload);
+            $("[id=hobbiesWrapper]").$(byText("Sports")).click();
+
+            $("[id=uploadPicture]").uploadFromClasspath("Screen Form.png");
 
             $("[id=currentAddress]").setValue("Some street 1");
 
