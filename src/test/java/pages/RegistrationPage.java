@@ -4,6 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
 import pages.components.CalendarComponent;
 
+import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -18,11 +19,13 @@ public class RegistrationPage {
                             subjectsInput = $("[id=subjectsInput]"),
                             hobbiesWrapper = $("[id=hobbiesWrapper]"),
                             uploadPictureInput = $("[id=uploadPicture]"),
-                            addressInput = $("[id=currentAddress]").setValue("Some street 1"),
+                            addressInput = $("[id=currentAddress]"),
                             stateInput = $("[id=state]"),
                             cityInput = $("[id=city]"),
                             stateCityWrapper = $("#stateCity-wrapper"),
-                            submitButton = $("[id=submit]");
+                            submitButton = $("[id=submit]"),
+                            tableResponse = $("[class=table-responsive]"),
+                            userForm = $("#userForm");
 
 
     CalendarComponent calendarComponent = new CalendarComponent();
@@ -102,6 +105,15 @@ public class RegistrationPage {
     public RegistrationPage pressSubmit(){
         submitButton.click();
         return this;
+    }
+
+    public RegistrationPage checkResponseField(String value1, String value2){
+        tableResponse.$(byText(value1)).parent().shouldHave(text(value2));
+        return this;
+    }
+
+    public void wasValidate(){
+        userForm.shouldHave(cssClass("was-validated"));
     }
 
 
