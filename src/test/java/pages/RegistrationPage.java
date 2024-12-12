@@ -115,7 +115,5 @@ public class RegistrationPage {
     public void wasValidate(){
         userForm.shouldHave(cssClass("was-validated"));
     }
-
-
 }
 
