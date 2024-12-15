@@ -10,6 +10,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
+
     private final SelenideElement firstNameInput  = $("[id=firstName]"),
                             lastNameInput = $("[id=lastName]"),
                             emailInput = $("[id=userEmail]"),
@@ -31,11 +32,22 @@ public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
 
 
-    public RegistrationPage openPage(){
+   /* public RegistrationPage openPage(){
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
+        return this;
+    }*/
+
+    public RegistrationPage openPage() {
+        //open("/automation-practice-form");
+        open("https://demoqa.com/automation-practice-form");
+
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+
         return this;
     }
 

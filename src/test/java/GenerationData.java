@@ -1,30 +1,174 @@
 import com.github.javafaker.Faker;
 
-import java.util.ArrayList;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.Locale;
+
 
 public class GenerationData {
 
     Faker faker = new Faker(new Locale("en"));
 
-    String name;
-    List<String> gender = new ArrayList<>();
-    gender.add("Man");
+    private String name;
+    private String lastName;
+    private String email;
+    private String gender;
+    private String phoneNumber;
+    private String subject;
+    private String hobbies;
+    private String address;
+    private String state;
+    private String city;
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Faker getFaker() {
+        return faker;
+    }
+
+    private List<String> genderList = List.of("Male", "Female", "Other");
+    private List<String> month = List.of("January", "February", "March", "April", "May", "June", "July", "August",
+            "September", "October", "November", "December");
+    private List<String> subjectsList = List.of("Maths", "Physics", "Chemistry", "Biology", "English", "History", "Computer Science",
+            "Commerce", "Hindi");
+    private List<String> hobbiesList = List.of("Sports", "Reading", "Music");
+    private List<String> statesOfCity = List.of("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
+    private List<String> cityOfNCR = List.of("Delhi", "Gurgaon", "Noida");
+    private List<String> cityOfUttar = List.of("Agra", "Lucknow", "Merrut");
+    private List<String> cityOfHaryana = List.of("Karnal", "Panipat");
+    private List<String> cityOfRajasthan = List.of("Jaipur", "Jaiselmer");
 
 
-    public String getName(){
+
+    public String generationName(){
         name =faker.name().firstName();
         return name;
     }
-    public String getLastName(){
-        return faker.name().lastName();
+
+    public String generationLastName(){
+        lastName = faker.name().lastName();
+        return lastName;
     }
-    public String getEmail(){
-        String email = faker.internet().emailAddress();
-       email = email.substring(email.indexOf('@'));
-        return name + email;
+
+    public String generationEmail(){
+        email = faker.internet().emailAddress();
+        email = email.substring(email.indexOf('@'));
+        email = name + email;
+        return email;
     }
+
+    public String generationGender(){
+        gender = genderList.get(faker.number().numberBetween(0,genderList.toArray().length));
+        return gender;
+    }
+
+    public String generationPhoneNumber(){
+        phoneNumber = faker.phoneNumber().subscriberNumber(10);
+        return phoneNumber;
+    }
+
+    public String generationDay(){
+        return String.valueOf(faker.number().numberBetween(1,28));
+    }
+
+    public String generationMonth(){
+        return month.get(faker.number().numberBetween(0,month.toArray().length));
+    }
+
+    public String generationYear(){
+        return String.valueOf(faker.number().numberBetween(1924,2006));
+
+    }
+
+    public String generationSubject(){
+        subject = subjectsList.get(faker.number().numberBetween(0, subjectsList.toArray().length));
+        return subject;
+    }
+
+    public String generationHobbies(){
+        hobbies = hobbiesList.get(faker.number().numberBetween(0, hobbiesList.toArray().length));
+        return hobbies;
+    }
+
+    public void generationFile(){
+        try{
+            Files.createFile(Path.of("src/test/resources", faker.file().fileName("",null,null,"/")));
+        }
+        catch(IOException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public String generationAddress(){
+        address = faker.address().fullAddress();
+        return address;
+    }
+
+    public String generationState(){
+        state = statesOfCity.get(faker.number().numberBetween(0,statesOfCity.toArray().length));
+        return state;
+    }
+
+    public String generationCity(){
+
+        if(state.equals("NCR")){
+            city = cityOfNCR.get(faker.number().numberBetween(0,cityOfNCR.toArray().length));
+        }
+        else if(state.equals("Uttar Pradesh")){
+            city = cityOfUttar.get(faker.number().numberBetween(0,cityOfUttar.toArray().length));
+        }
+        else if(state.equals("Haryana")){
+            city = cityOfHaryana.get(faker.number().numberBetween(0,cityOfHaryana.toArray().length));
+        }else {
+            return cityOfRajasthan.get(faker.number().numberBetween(0,cityOfRajasthan.toArray().length));
+        }
+        return city;
+    }
+
+
+
+
+
 
 
 
@@ -34,8 +178,8 @@ public class GenerationData {
 
     public static void main(String[] args) {
         GenerationData generationData = new GenerationData();
+        Faker faker = new Faker(new Locale("en"));
+           // generationData.getFile();
 
-        System.out.println(generationData.getName());
-        System.out.println(generationData.getEmail());
     }
 }
