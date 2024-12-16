@@ -56,9 +56,9 @@ public class RegistrationFormWithPageObjTest extends TestBase{
     @Test
     public void RegistrationEmptyFormWithPageObjTest(){
 
-        registrationPage.openPage();
-           /*     .pressSubmit()
-                .wasValidate();*/
+        registrationPage.openPage()
+                .pressSubmit()
+                .wasValidate();
     }
 
 }

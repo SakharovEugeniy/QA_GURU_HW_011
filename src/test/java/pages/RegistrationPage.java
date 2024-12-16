@@ -32,24 +32,24 @@ public class RegistrationPage {
     CalendarComponent calendarComponent = new CalendarComponent();
 
 
-   /* public RegistrationPage openPage(){
+    public RegistrationPage openPage(){
         open("/automation-practice-form");
         $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
-    }*/
-
-    public RegistrationPage openPage() {
-        //open("/automation-practice-form");
-        open("https://demoqa.com/automation-practice-form");
-
-        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
-
-        return this;
     }
+
+//    public RegistrationPage openPage() {
+//        //open("/automation-practice-form");
+//        open("https://demoqa.com/automation-practice-form");
+//
+//        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
+//        executeJavaScript("$('#fixedban').remove()");
+//        executeJavaScript("$('footer').remove()");
+//
+//        return this;
+//    }
 
     public RegistrationPage setName(String value){
         firstNameInput.setValue(value);
