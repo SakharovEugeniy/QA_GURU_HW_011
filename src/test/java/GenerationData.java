@@ -156,9 +156,12 @@ public class GenerationData {
         return hobbies;
     }
 
+                    //Доработать после увелечение тех экспертизы. Данный прекрасный метод НЕ будет работать в Jenkins-е
+                    //т.к. указан локальный путь который необходимо заменить на что-то другое
+
     public String generationFile(){
         try{
-            File file = Files.createFile(Path.of("src/test/resources", faker.file().fileName("", null, null, "/"))).toFile();
+            File file = Files.createFile(Path.of("build/resources/test", faker.file().fileName("", null, null, "/"))).toFile();
             fileName = file.getName();
             return fileName;
         }
@@ -192,25 +195,5 @@ public class GenerationData {
             city = cityOfRajasthan.get(faker.number().numberBetween(0,cityOfRajasthan.toArray().length));
         }
         return city;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    public static void main(String[] args) {
-        GenerationData generationData = new GenerationData();
-        Faker faker = new Faker(new Locale("en"));
-
-        System.out.println(generationData.generationFile());
-        System.out.println(generationData.getFileName());
-
     }
 }

@@ -15,15 +15,4 @@ public class TestBase {
 //        Configuration.timeout = 10000;
         Configuration.holdBrowserOpen = true;
     }
-
-    /*@AfterAll
-    static void afterAll() throws IOException {
-        Files.walk(Path.of("dir_path")).filter(Files::isRegularFile).forEach(p -> {
-            try {
-                Files.delete(p);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        });
-    }*/
 }
