@@ -4,35 +4,36 @@ import pages.RegistrationPage;
 public class RegistrationFormWithPageObjTest extends TestBase{
 
     RegistrationPage registrationPage = new RegistrationPage();
+    GenerationData generationData = new GenerationData();
 
     @Test
     public void RegistrationFullFormWithPageObjTest(){
 
         registrationPage.openPage()
-                .setName("Ivan")
-                .setLastName("Ivanov")
-                .setEmail("IIvanov@gmail.com")
-                .setGender("Male")
-                .setUserNumber("0123456789")
-                .setDate("1", "January", "2000")
-                .setSubjects("Computer Science")
-                .setSubjects("Commerce")
-                .setHobbies("Sports")
-                .loadPicture("Screen Form.png")
-                .setAddress("Some street 1")
-                .setState("Rajasthan")
-                .setCity("Jaiselmer")
+                .setName(generationData.generationName())
+                .setLastName(generationData.generationLastName())
+                .setEmail(generationData.generationEmail())
+                .setGender(generationData.generationGender())
+                .setUserNumber(generationData.generationPhoneNumber())
+                .setDate(generationData.generationDayBirth(), generationData.generationMonthBirth(), generationData.generationYearBirth())
+                .setSubjects(generationData.generationSubject())
+                .setHobbies(generationData.generationHobbies())
+                .loadPicture(generationData.generationFile())
+                .setAddress(generationData.generationAddress())
+                .setState(generationData.generationState())
+                .setCity(generationData.generationCity())
                 .pressSubmit()
-                .checkResponseField("Student Name","Ivan Ivanov")
-                .checkResponseField("Student Email", "IIvanov@gmail.com")
-                .checkResponseField("Gender", "Male")
-                .checkResponseField("Mobile", "0123456789")
-                .checkResponseField("Date of Birth", "01 January,2000")
-                .checkResponseField("Subjects", "Computer Science, Commerce")
-                .checkResponseField("Hobbies", "Sports").
-                checkResponseField("Picture", "Screen Form.png")
-                .checkResponseField("Address", "Some street 1")
-                .checkResponseField("State and City", "Rajasthan Jaiselmer");
+                .checkResponseField("Student Name",generationData.getName())
+                .checkResponseField("Student Email", generationData.getEmail())
+                .checkResponseField("Gender", generationData.getGender())
+                .checkResponseField("Mobile", generationData.getPhoneNumber())
+                .checkResponseField("Date of Birth",  generationData.getDayBirth() + " " + generationData.getMonthBirth()
+                        + "," + generationData.getYearBirth())
+                .checkResponseField("Subjects", generationData.getSubject())
+                .checkResponseField("Hobbies", generationData.getHobbies())
+                .checkResponseField("Picture", generationData.getFileName())
+                .checkResponseField("Address", generationData.getAddress())
+                .checkResponseField("State and City", generationData.getState() + " " + generationData.getCity());
     }
 
 
@@ -40,16 +41,17 @@ public class RegistrationFormWithPageObjTest extends TestBase{
     public void RegistrationMinimalFormWithPageObjTest(){
 
         registrationPage.openPage()
-                .setName("Ivan")
-                .setLastName("Ivanov")
-                .setGender("Male")
-                .setUserNumber("0123456789")
-                .setDate("1", "January", "2000")
+                .setName(generationData.generationName())
+                .setLastName(generationData.generationLastName())
+                .setGender(generationData.generationGender())
+                .setUserNumber(generationData.generationPhoneNumber())
+                .setDate(generationData.generationDayBirth(), generationData.generationMonthBirth(), generationData.generationYearBirth())
                 .pressSubmit()
-                .checkResponseField("Student Name","Ivan Ivanov")
-                .checkResponseField("Gender", "Male")
-                .checkResponseField("Mobile", "0123456789")
-                .checkResponseField("Date of Birth", "01 January,2000");
+                .checkResponseField("Student Name",generationData.getName() + " " + generationData.getLastName())
+                .checkResponseField("Gender", generationData.getGender())
+                .checkResponseField("Mobile", generationData.getPhoneNumber())
+                .checkResponseField("Date of Birth", generationData.getDayBirth() + " " + generationData.getMonthBirth()
+                        + "," + generationData.getYearBirth());
     }
 
 

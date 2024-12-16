@@ -1,5 +1,6 @@
 import com.github.javafaker.Faker;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -16,8 +17,12 @@ public class GenerationData {
     private String email;
     private String gender;
     private String phoneNumber;
+    private String dayBirth;
+    private String monthBirth;
+    private String yearBirth;
     private String subject;
     private String hobbies;
+    private String fileName;
     private String address;
     private String state;
     private String city;
@@ -38,12 +43,28 @@ public class GenerationData {
         return hobbies;
     }
 
+    public String getFileName() {
+        return fileName;
+    }
+
     public String getSubject() {
         return subject;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getDayBirth() {
+        return dayBirth;
+    }
+
+    public String getMonthBirth() {
+        return monthBirth;
+    }
+
+    public String getYearBirth() {
+        return yearBirth;
     }
 
     public String getGender() {
@@ -62,9 +83,6 @@ public class GenerationData {
         return name;
     }
 
-    public Faker getFaker() {
-        return faker;
-    }
 
     private List<String> genderList = List.of("Male", "Female", "Other");
     private List<String> month = List.of("January", "February", "March", "April", "May", "June", "July", "August",
@@ -107,16 +125,24 @@ public class GenerationData {
         return phoneNumber;
     }
 
-    public String generationDay(){
-        return String.valueOf(faker.number().numberBetween(1,28));
+    public String generationDayBirth(){
+        int tmp = faker.number().numberBetween(1,28);
+        if(tmp < 10){
+            dayBirth = "0" + tmp;
+        } else {
+            dayBirth = String.valueOf(tmp);
+        }
+        return dayBirth;
     }
 
-    public String generationMonth(){
-        return month.get(faker.number().numberBetween(0,month.toArray().length));
+    public String generationMonthBirth(){
+        monthBirth = month.get(faker.number().numberBetween(0,month.toArray().length));
+        return monthBirth;
     }
 
-    public String generationYear(){
-        return String.valueOf(faker.number().numberBetween(1924,2006));
+    public String generationYearBirth(){
+        yearBirth = String.valueOf(faker.number().numberBetween(1924,2006));
+        return yearBirth;
 
     }
 
@@ -130,13 +156,16 @@ public class GenerationData {
         return hobbies;
     }
 
-    public void generationFile(){
+    public String generationFile(){
         try{
-            Files.createFile(Path.of("src/test/resources", faker.file().fileName("",null,null,"/")));
+            File file = Files.createFile(Path.of("src/test/resources", faker.file().fileName("", null, null, "/"))).toFile();
+            fileName = file.getName();
+            return fileName;
         }
         catch(IOException ex){
             System.out.println(ex.getMessage());
         }
+        return "Some problems with create files";
     }
 
     public String generationAddress(){
@@ -160,7 +189,7 @@ public class GenerationData {
         else if(state.equals("Haryana")){
             city = cityOfHaryana.get(faker.number().numberBetween(0,cityOfHaryana.toArray().length));
         }else {
-            return cityOfRajasthan.get(faker.number().numberBetween(0,cityOfRajasthan.toArray().length));
+            city = cityOfRajasthan.get(faker.number().numberBetween(0,cityOfRajasthan.toArray().length));
         }
         return city;
     }
@@ -179,7 +208,9 @@ public class GenerationData {
     public static void main(String[] args) {
         GenerationData generationData = new GenerationData();
         Faker faker = new Faker(new Locale("en"));
-           // generationData.getFile();
+
+        System.out.println(generationData.generationFile());
+        System.out.println(generationData.getFileName());
 
     }
 }
