@@ -97,37 +97,36 @@ public class GenerationData {
     private List<String> cityOfRajasthan = List.of("Jaipur", "Jaiselmer");
 
 
-
-    public String generationName(){
-        name =faker.name().firstName();
+    public String generationName() {
+        name = faker.name().firstName();
         return name;
     }
 
-    public String generationLastName(){
+    public String generationLastName() {
         lastName = faker.name().lastName();
         return lastName;
     }
 
-    public String generationEmail(){
+    public String generationEmail() {
         email = faker.internet().emailAddress();
         email = email.substring(email.indexOf('@'));
         email = name + email;
         return email;
     }
 
-    public String generationGender(){
-        gender = genderList.get(faker.number().numberBetween(0,genderList.toArray().length));
+    public String generationGender() {
+        gender = genderList.get(faker.number().numberBetween(0, genderList.toArray().length));
         return gender;
     }
 
-    public String generationPhoneNumber(){
+    public String generationPhoneNumber() {
         phoneNumber = faker.phoneNumber().subscriberNumber(10);
         return phoneNumber;
     }
 
-    public String generationDayBirth(){
-        int tmp = faker.number().numberBetween(1,28);
-        if(tmp < 10){
+    public String generationDayBirth() {
+        int tmp = faker.number().numberBetween(1, 28);
+        if (tmp < 10) {
             dayBirth = "0" + tmp;
         } else {
             dayBirth = String.valueOf(tmp);
@@ -135,64 +134,61 @@ public class GenerationData {
         return dayBirth;
     }
 
-    public String generationMonthBirth(){
-        monthBirth = month.get(faker.number().numberBetween(0,month.toArray().length));
+    public String generationMonthBirth() {
+        monthBirth = month.get(faker.number().numberBetween(0, month.toArray().length));
         return monthBirth;
     }
 
-    public String generationYearBirth(){
-        yearBirth = String.valueOf(faker.number().numberBetween(1924,2006));
+    public String generationYearBirth() {
+        yearBirth = String.valueOf(faker.number().numberBetween(1924, 2006));
         return yearBirth;
 
     }
 
-    public String generationSubject(){
+    public String generationSubject() {
         subject = subjectsList.get(faker.number().numberBetween(0, subjectsList.toArray().length));
         return subject;
     }
 
-    public String generationHobbies(){
+    public String generationHobbies() {
         hobbies = hobbiesList.get(faker.number().numberBetween(0, hobbiesList.toArray().length));
         return hobbies;
     }
 
-                    //Доработать после увелечение тех экспертизы. Данный прекрасный метод НЕ будет работать в Jenkins-е
-                    //т.к. указан локальный путь который необходимо заменить на что-то другое
+    //Доработать после увелечение тех экспертизы. Данный прекрасный метод НЕ будет работать в Jenkins-е
+    //т.к. указан локальный путь который необходимо заменить на что-то другое
 
-    public String generationFile(){
-        try{
+    public String generationFile() {
+        try {
             File file = Files.createFile(Path.of("build/resources/test", faker.file().fileName("", null, null, "/"))).toFile();
             fileName = file.getName();
             return fileName;
-        }
-        catch(IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
         return "Some problems with create files";
     }
 
-    public String generationAddress(){
+    public String generationAddress() {
         address = faker.address().fullAddress();
         return address;
     }
 
-    public String generationState(){
-        state = statesOfCity.get(faker.number().numberBetween(0,statesOfCity.toArray().length));
+    public String generationState() {
+        state = statesOfCity.get(faker.number().numberBetween(0, statesOfCity.toArray().length));
         return state;
     }
 
-    public String generationCity(){
+    public String generationCity() {
 
-        if(state.equals("NCR")){
-            city = cityOfNCR.get(faker.number().numberBetween(0,cityOfNCR.toArray().length));
-        }
-        else if(state.equals("Uttar Pradesh")){
-            city = cityOfUttar.get(faker.number().numberBetween(0,cityOfUttar.toArray().length));
-        }
-        else if(state.equals("Haryana")){
-            city = cityOfHaryana.get(faker.number().numberBetween(0,cityOfHaryana.toArray().length));
-        }else {
-            city = cityOfRajasthan.get(faker.number().numberBetween(0,cityOfRajasthan.toArray().length));
+        if (state.equals("NCR")) {
+            city = cityOfNCR.get(faker.number().numberBetween(0, cityOfNCR.toArray().length));
+        } else if (state.equals("Uttar Pradesh")) {
+            city = cityOfUttar.get(faker.number().numberBetween(0, cityOfUttar.toArray().length));
+        } else if (state.equals("Haryana")) {
+            city = cityOfHaryana.get(faker.number().numberBetween(0, cityOfHaryana.toArray().length));
+        } else {
+            city = cityOfRajasthan.get(faker.number().numberBetween(0, cityOfRajasthan.toArray().length));
         }
         return city;
     }

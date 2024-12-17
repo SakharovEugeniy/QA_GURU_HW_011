@@ -1,13 +1,13 @@
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-public class RegistrationFormWithPageObjTest extends TestBase{
+public class RegistrationFormWithPageObjTest extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
     GenerationData generationData = new GenerationData();
 
     @Test
-    public void RegistrationFullFormWithPageObjTest(){
+    public void registrationFullFormWithPageObjTest() {
 
         registrationPage.openPage()
                 .setName(generationData.generationName())
@@ -23,11 +23,11 @@ public class RegistrationFormWithPageObjTest extends TestBase{
                 .setState(generationData.generationState())
                 .setCity(generationData.generationCity())
                 .pressSubmit()
-                .checkResponseField("Student Name",generationData.getName())
+                .checkResponseField("Student Name", generationData.getName())
                 .checkResponseField("Student Email", generationData.getEmail())
                 .checkResponseField("Gender", generationData.getGender())
                 .checkResponseField("Mobile", generationData.getPhoneNumber())
-                .checkResponseField("Date of Birth",  generationData.getDayBirth() + " " + generationData.getMonthBirth()
+                .checkResponseField("Date of Birth", generationData.getDayBirth() + " " + generationData.getMonthBirth()
                         + "," + generationData.getYearBirth())
                 .checkResponseField("Subjects", generationData.getSubject())
                 .checkResponseField("Hobbies", generationData.getHobbies())
@@ -38,7 +38,7 @@ public class RegistrationFormWithPageObjTest extends TestBase{
 
 
     @Test
-    public void RegistrationMinimalFormWithPageObjTest(){
+    public void registrationMinimalFormWithPageObjTest() {
 
         registrationPage.openPage()
                 .setName(generationData.generationName())
@@ -47,7 +47,7 @@ public class RegistrationFormWithPageObjTest extends TestBase{
                 .setUserNumber(generationData.generationPhoneNumber())
                 .setDate(generationData.generationDayBirth(), generationData.generationMonthBirth(), generationData.generationYearBirth())
                 .pressSubmit()
-                .checkResponseField("Student Name",generationData.getName() + " " + generationData.getLastName())
+                .checkResponseField("Student Name", generationData.getName() + " " + generationData.getLastName())
                 .checkResponseField("Gender", generationData.getGender())
                 .checkResponseField("Mobile", generationData.getPhoneNumber())
                 .checkResponseField("Date of Birth", generationData.getDayBirth() + " " + generationData.getMonthBirth()
@@ -56,7 +56,7 @@ public class RegistrationFormWithPageObjTest extends TestBase{
 
 
     @Test
-    public void RegistrationEmptyFormWithPageObjTest(){
+    public void registrationEmptyFormWithPageObjTest() {
 
         registrationPage.openPage()
                 .pressSubmit()
