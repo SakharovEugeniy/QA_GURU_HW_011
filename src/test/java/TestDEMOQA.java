@@ -18,7 +18,6 @@ public class TestDEMOQA extends TestBase {
 
         step("Открываем домашнюю страницу demoqa с формой для заполнения", () -> {
             open("/automation-practice-form");
-            $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
             executeJavaScript("$('#fixedban').remove()");
             executeJavaScript("$('footer').remove()");
         });

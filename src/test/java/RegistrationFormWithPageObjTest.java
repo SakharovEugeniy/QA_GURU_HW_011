@@ -1,3 +1,4 @@
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
@@ -7,6 +8,7 @@ public class RegistrationFormWithPageObjTest extends TestBase {
     GenerationData generationData = new GenerationData();
 
     @Test
+    @Step("Проверка заполнения всех доступных полей формы регистрации сайта demoqa")
     public void registrationFullFormWithPageObjTest() {
 
         registrationPage.openPage()
@@ -38,6 +40,7 @@ public class RegistrationFormWithPageObjTest extends TestBase {
 
 
     @Test
+    @Step("Проверка заполнения минимального количества полей формы регистрации сайта demoqa")
     public void registrationMinimalFormWithPageObjTest() {
 
         registrationPage.openPage()
@@ -56,6 +59,7 @@ public class RegistrationFormWithPageObjTest extends TestBase {
 
 
     @Test
+    @Step("Проверка невозможности регистрации с пустыми полями")
     public void registrationEmptyFormWithPageObjTest() {
 
         registrationPage.openPage()
