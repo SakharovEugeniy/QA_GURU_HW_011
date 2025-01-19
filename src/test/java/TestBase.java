@@ -3,16 +3,11 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
-import org.checkerframework.checker.units.qual.A;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import static com.codeborne.selenide.Selenide.executeJavaScript;
+import java.util.Map;
 
 public class TestBase {
     @BeforeAll
@@ -22,6 +17,13 @@ public class TestBase {
         Configuration.browserSize = "1920x1080";
         SelenideLogger.addListener("allure", new AllureSelenide());
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
     }
 
     @AfterEach
