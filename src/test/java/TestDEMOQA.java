@@ -5,8 +5,8 @@ import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static io.qameta.allure.Allure.step;
 
 @Tag("function_test")
@@ -18,6 +18,8 @@ public class TestDEMOQA extends TestBase {
 
         step("Открываем домашнюю страницу demoqa с формой для заполнения", () -> {
             open("/automation-practice-form");
+            executeJavaScript("$('#fixedban').remove()");
+            executeJavaScript("$('footer').remove()");
         });
 
         step("Заполняем все поля, чек боксы, радио кнопки и прикрепляем файл", () -> {

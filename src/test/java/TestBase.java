@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static com.codeborne.selenide.Selenide.executeJavaScript;
+
 public class TestBase {
     @BeforeAll
     static void setUpPreconditions() {
