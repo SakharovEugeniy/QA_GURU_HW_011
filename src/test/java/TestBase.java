@@ -14,8 +14,9 @@ public class TestBase {
     static void setUpPreconditions() {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.browserSize = System.getProperty("permission", "1920x1080");
-                //Configuration.browserSize = "1920x1080";
+        Configuration.browser = System.getProperty("browser");
+        Configuration.browserVersion = System.getProperty("browser_version");
+        Configuration.browserSize = System.getProperty("permission");
         SelenideLogger.addListener("allure", new AllureSelenide());
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
