@@ -12,13 +12,13 @@ import java.util.Map;
 public class TestBase {
     @BeforeAll
     static void setUpPreconditions() {
-        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.baseUrl = System.getProperty("url_regform");
         Configuration.pageLoadStrategy = "eager";
         Configuration.browser = System.getProperty("browser");
         Configuration.browserVersion = System.getProperty("browser_version");
         Configuration.browserSize = System.getProperty("permission");
         SelenideLogger.addListener("allure", new AllureSelenide());
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = System.getProperty("url_selenoid") + "wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
