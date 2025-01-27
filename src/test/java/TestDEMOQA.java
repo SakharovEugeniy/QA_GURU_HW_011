@@ -40,7 +40,7 @@ public class TestDEMOQA extends TestBase {
             $("#stateCity-wrapper").$(byText("Rajasthan")).click();
             $("[id=city]").click();
             $("#stateCity-wrapper").$(byText("Jaiselmer")).click();
-            $("[id=submit]").click();
+            $("[id=submit]").scrollTo().click();
         });
 
         step("Проверяем на соответствие введёных данных и значений в готовой форме", () -> {

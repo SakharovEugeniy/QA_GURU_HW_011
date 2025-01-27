@@ -118,7 +118,7 @@ public class RegistrationPage {
 
     @Step("Press Submit")
     public RegistrationPage pressSubmit() {
-        submitButton.click();
+        submitButton.scrollTo().click();
         return this;
     }
 
