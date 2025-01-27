@@ -18,7 +18,7 @@ public class TestBase {
         Configuration.browserVersion = System.getProperty("browser_version");
         Configuration.browserSize = System.getProperty("permission");
         SelenideLogger.addListener("allure", new AllureSelenide());
-        Configuration.remote = System.getProperty("url_selenoid") + "wd/hub";
+        Configuration.remote = "https://user1:1234@" + System.getProperty("url_selenoid") + "/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
